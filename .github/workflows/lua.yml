@@ -1,0 +1,21 @@
+name: Lua Linting with Luacheck
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '23 9 * * 3' # This schedules the action to run at 9:23 AM every Wednesday. You can adjust this as needed.
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  lua-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.5.2
+
+      - name: Run Luacheck
+        uses: lunarmodules/luacheck@v1.1.1
